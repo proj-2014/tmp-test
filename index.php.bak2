@@ -1,0 +1,42 @@
+<?php
+
+require("toro.php");
+
+class HelloHandler {
+    function get() {
+      echo "Hello, world";
+    }
+}
+
+class WpHandler {
+    function get() {
+       define('WP_USE_THEMES', true);
+       require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+    }
+
+}
+
+Toro::serve(array(
+    "/hello" => "HelloHandler",
+    //"/([a-zA-Z0-9-_]*)" => "WpHandler"
+    "(.*)" => "WpHandler"
+));
+
+
+
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+//define('WP_USE_THEMES', true);
+
+/** Loads the WordPress Environment and Template */
+//require( dirname( __FILE__ ) . '/wp-blog-header.php' );
