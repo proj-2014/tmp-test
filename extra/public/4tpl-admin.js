@@ -52,6 +52,7 @@ function save_albums(jour) {
         jurl = jurl + "&callback=?"
 
 	var albums = [];
+        al_ids = [];
         
 	jQuery.getJSON(jurl, function(data){
 		  if(data.feed.entry) {
@@ -107,7 +108,7 @@ function save_albums(jour) {
 function save_photos(al_id) {
     
     vuser = "112389034152258078738";
-    al_id = "6157825214333559265";
+    //al_id = "6157825214333559265";
     //alert("save al_id: " + al_id); 
     //http://picasaweb.google.com/data/feed/api/user/112389034152258078738/albumid/6157825214333559265?alt=json
     al_url = "http://picasaweb.google.com/data/feed/api/user/" + vuser + "/albumid/" + al_id + "?alt=json" ;

@@ -11,7 +11,9 @@ aop_add_after_returning('wp_head()', function() {
       echo "<script type='text/javascript' src='/extra/public/js/underscore.min.js'></script>  " ;
       echo "<script type='text/javascript' src='/extra/public/js/behavior.js'></script>  " ;
       echo "<script type='text/javascript' src='/extra/public/4home.js'></script>  " ;
+      echo "<script type='text/javascript' src='/extra/public/4home2.js'></script>  " ;
       
+
     }
    
    /*
