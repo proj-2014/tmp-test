@@ -46,7 +46,7 @@ define('WPLANG', "zh_CN");
 }
 else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml")
 {
-define('DB_NAME', 'db_test_wp');
+define('DB_NAME', 'db_test_wp2');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 define('DB_HOST', 'localhost');
