@@ -1,7 +1,7 @@
 <?php
 
-/* admin.twig */
-class __TwigTemplate_f30230c7fc21642504c212590ed346fde8ec3c2c1125da9c1b741f8de2591383 extends Twig_Template
+/* admin2.twig */
+class __TwigTemplate_54f421f878da0b36fafefb56809658debc7178f800c8eb6a3e0492e23a2db49b extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -24,7 +24,7 @@ class __TwigTemplate_f30230c7fc21642504c212590ed346fde8ec3c2c1125da9c1b741f8de25
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true);
         echo "! </title>
 <script type=\"text/javascript\"  src=\"/extra2/common/public/js/jquery-1.9.1.js\"> </script>
-<script type=\"text/javascript\"  src=\"/extra2/patch4the7/public/4tpl-admin.js\"> </script> 
+<script type=\"text/javascript\"  src=\"/extra2/common/public/4tpl-admin.js\"> </script> 
 </head>
 
 <body>
@@ -44,7 +44,7 @@ class __TwigTemplate_f30230c7fc21642504c212590ed346fde8ec3c2c1125da9c1b741f8de25
 
     public function getTemplateName()
     {
-        return "admin.twig";
+        return "admin2.twig";
     }
 
     public function isTraitable()

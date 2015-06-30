@@ -1,7 +1,7 @@
 <?php
 
 /* admin.twig */
-class __TwigTemplate_f30230c7fc21642504c212590ed346fde8ec3c2c1125da9c1b741f8de2591383 extends Twig_Template
+class __TwigTemplate_9577f2c8540191d248b004490453454756ef07f05de23d46634ce92cbbcdc1c8 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -24,7 +24,7 @@ class __TwigTemplate_f30230c7fc21642504c212590ed346fde8ec3c2c1125da9c1b741f8de25
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true);
         echo "! </title>
 <script type=\"text/javascript\"  src=\"/extra2/common/public/js/jquery-1.9.1.js\"> </script>
-<script type=\"text/javascript\"  src=\"/extra2/patch4the7/public/4tpl-admin.js\"> </script> 
+<script type=\"text/javascript\"  src=\"/extra2/patch4remal/public/4tpl-admin.js\"> </script> 
 </head>
 
 <body>

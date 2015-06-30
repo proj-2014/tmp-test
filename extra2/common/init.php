@@ -7,8 +7,10 @@
 require_once("lib/ezSQL/shared/ez_sql_core.php");
 require_once("lib/ezSQL/mysql/ez_sql_mysql.php");
 
-$mydb = new ezSQL_mysql(MYDB_USER,  MYDB_PASSWORD, MYDB_NAME, MYDB_HOST);
+//$mydb = new ezSQL_mysql(MYDB_USER,  MYDB_PASSWORD, MYDB_NAME, MYDB_HOST);
 //$mydb->get_var("SELECT count(*) FROM test_wp01_users");
+
+//$mydb = new ezSQL_mysql('root', 'root', 'db_test_extra', 'localhost');
 
 
 // ===========================================
