@@ -11,7 +11,7 @@ define('COMMONPATH', EXTRAPATH . 'common/');
 
 
 /*
-if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml")
+if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test01.vlan")
 {
     require("extra/handler.php");
     require("extra/aop.php");
@@ -26,7 +26,7 @@ if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml")
 	));
 	      
 }*/
-if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml")
+if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml"|| $_SERVER["HTTP_HOST"]=="test01.vlan" )
 {
 
      define('PATCHPATH', EXTRAPATH . 'patch4remal/');
@@ -46,7 +46,7 @@ if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml")
 	));
 
 } 
-else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml")
+else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test02.vlan" )
 {
 
      define('PATCHPATH', EXTRAPATH . 'patch4the7/');

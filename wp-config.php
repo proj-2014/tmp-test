@@ -32,7 +32,7 @@ define('DB_COLLATE', '');
 $table_prefix  = 'web__';
 define('WPLANG', 'en_US');
 }
-else if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml")
+else if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml"|| $_SERVER["HTTP_HOST"]=="test01.vlan")
 {
 define('DB_NAME', 'db_test_wp');
 define('DB_USER', 'root');
@@ -44,7 +44,7 @@ define('DB_COLLATE', '');
 $table_prefix  = 'test_wp01_';
 define('WPLANG', "zh_CN");
 }
-else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml")
+else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test02.vlan" )
 {
 define('DB_NAME', 'db_test_wp2');
 define('DB_USER', 'root');
@@ -56,7 +56,7 @@ define('DB_COLLATE', '');
 $table_prefix  = 'test_wp02_';
 define('WPLANG', "en_US");
 }
-else if($_SERVER["HTTP_HOST"]=="test03.tmp0230.ml")
+else if($_SERVER["HTTP_HOST"]=="test03.tmp0230.ml" ||  $_SERVER["HTTP_HOST"]=="test03.vlan" )
 {
 define('DB_NAME', 'db_test_wp');
 define('DB_USER', 'root');
