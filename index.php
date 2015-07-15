@@ -1,18 +1,18 @@
 <?php
 
-/*
-define('MYDB_NAME', 'db_test_extra2');
-define('MYDB_USER', 'root');
-define('MYDB_PASSWORD', 'root');
-define('MYDB_HOST', 'localhost');
-*/
-define('EXTRAPATH', dirname(__FILE__) . '/extra2/');
+define('EXTRAPATH', dirname(__FILE__) . '/extra2.1/');
 define('COMMONPATH', EXTRAPATH . 'common/');
 
+// patch , for fix the bug tha wordpress cannot been require in functions  ----20150715
+$wp_flag = false;
+// patch end 
+
 
 /*
+// this part rewrite as follow , pls check it . 
 if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test01.vlan")
 {
+   
     require("extra/handler.php");
     require("extra/aop.php");
 
@@ -49,7 +49,7 @@ if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml"|| $_SERVER["HTTP_HOST"]=="test01.v
 else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test02.vlan" )
 {
 
-     define('PATCHPATH', EXTRAPATH . 'patch4the7/');
+     define('PATCHPATH', EXTRAPATH . 'patch4mall/');
      require_once(COMMONPATH . 'init.php');
      require_once(PATCHPATH . 'patch.php');
    
@@ -62,6 +62,29 @@ else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="te
 	"/(.*)" => "DefaultHandler"
 	)); 
 } 
+else if($_SERVER["HTTP_HOST"]=="test03.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test03.vlan" )
+{
+
+     define('PATCHPATH', EXTRAPATH . 'patch4mall/');
+     require_once(COMMONPATH . 'init.php');
+     require_once(PATCHPATH . 'patch.php');
+   
+     //$mydb = new ezSQL_mysql(MYDB_USER,  MYDB_PASSWORD, MYDB_NAME, MYDB_HOST);
+     $mydb = new ezSQL_mysql('root', 'root', 'db_test_extra3', 'localhost');
+
+
+     Toro::serve(array(
+	"/hello" => "HelloHandler",
+	"/tpl/admin/(.*)" => "TplAdminHandler"   ,
+	"/(.*)" => "DefaultHandler"   
+	)); 
+
+} 
+
+// patch , for fix the bug tha wordpress cannot been require in functions  ----20150715
+if($wp_flag)
+    require_once "wp-index.php";
+// patch end
 
 ?>
 

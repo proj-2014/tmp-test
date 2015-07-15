@@ -1,0 +1,77 @@
+
+(function() {
+     alert(" now load 4tpl-front.js alread");
+
+})();
+
+jQuery(document).ready(function(){
+
+     addSomething();
+});
+
+function addSomething(){
+
+    btn1 = ' <input type="button" id="btn-albums" name="name:get albums" value="value:get albums" >';
+    $("#wrap").append(btn1);
+    $("#btn-albums").click(function(){
+        query_albums();
+    });
+
+    btn2 = ' <input type="button" id="btn-showA"  value="show  albums" >';
+    $("#wrap").append(btn2);a
+    $("#btn-showA").click(function(){
+        show_albums();
+    });
+
+
+
+}
+
+function query_albums() {
+
+    var jsonData = {
+        "al_id": "233435",
+        "al_title":  "jfjfk"
+    };
+
+    jQuery.ajax({
+        url:"/api/picasa/query_albums",
+        type:"POST",
+        data: JSON.stringify(jsonData),
+        dataType:"json",
+        success:function(data){
+            alert(JSON.stringify(data));
+            localStorage.setItem("albums",JSON.stringify(data));
+        }
+    }); 
+   
+}
+
+function show_albums() 
+{
+    var tmp = localStorage.getItem("albums");
+    var albums = JSON.parse(tmp);
+
+    var len = albums.length;
+    len = 10;
+    for(var i=0; i<len; i++){
+        al_fea = albums[i].al_feature;
+        if(i==0) alert("now in for 0,and url is "+ al_fea);
+        if(albums[i].al_feature){
+           var img_node = '<img src="'+ al_fea + '"  height=120  width=240  />';
+           $("#wrap").append("<b>pic is: </b>");
+           $("#wrap").append(img_node);       
+        }
+
+    } 
+
+
+
+}
+
+
+
+
+
+
+
