@@ -1,0 +1,240 @@
+
+window.$=window.jQuery; 
+
+function test(){
+  
+    alert("helelo");
+    alert("window.location.pathname is" + window.location.pathname);
+    alert("window.location.href is "  +  window.location.href);
+    alert("window.location.hash is " + window.location.hash);
+    alert("window.location.host is " + window.location.host);
+   
+    alert("window.location.search is " + window.location.search);
+   
+    var url = window.location.search ;
+    var loc = url.substring(url.lastIndexOf('=')+1, url.length);
+    alert(" args is " + loc);
+
+
+}
+    
+
+$(document).ready(function(){
+
+    //test();
+    var args = parseQueryString(window.location.href);
+    alert(JSON.stringify(args));
+
+    //initData();
+      });
+
+initData();
+
+function parseQueryString(url) {  
+    var str = url.split("?")[1], items = str.split("&");  
+    var result = {};  
+    var arr;  
+    for (var i = 0; i < items.length; i++) {  
+        arr = items[i].split("=");  
+        result[arr[0]] = arr[1];  
+    }  
+    return result;  
+}  
+
+function initData(){
+
+      var ajax_url = "/api/data/pagedata";
+
+      var path = window.location.pathname;
+      var srh = window.location.search;
+      var args = parseQueryString(srh);
+      var img1 = "https://lh3.googleusercontent.com/-n_uAAv3yQjc/Va7tJCiHJDI/AAAAAAAAAJs/8yIvExy2UD8/3-54d430b6Nce70cd8e.jpg";
+      var img2 = "https://lh3.googleusercontent.com/-U66Y9CdHjDA/Va7tC7OGZNI/AAAAAAAAAJU/NHq2atACL4w/1-54d430b2Ndd9c8907.jpg";
+      var img3 = "https://lh3.googleusercontent.com/-1iLb7BDOuU8/Va7s-wy4dsI/AAAAAAAAAJE/ga3OXpZnCwg/2-54d430b6Nce70cd8e.jpg";
+      var img4 = "https://lh3.googleusercontent.com/-eFC90MggVEs/Va7s7Ij2ZFI/AAAAAAAAAIs/5UrHrv47dpg/4-54d430b8Nd84c2b9e.jpg";
+
+  
+      var pkey = window.location.href;   //path + srh ; 
+      var pdata = {};
+      
+      //url = encodeURIComponent(url);
+      //srh = encodeURIComponent(srh);
+  
+      pdata = JSON.parse(localStorage.getItem(pkey));
+      //alert(value);
+
+      if(pdata){
+  
+          alert("datas from local Storage is  " + JSON.stringify(pdata));
+
+      }
+      else {
+     
+	      jQuery.ajax({   
+		    url:ajax_url, 
+		    type:'POST',   
+		    data:{"path":path, "search":srh, "args":args, "img1":img1, "img2":img2, "img3":img3, "img4":img4},  
+		    dataType:"json",
+		    //contentType:"application/json; charset=utf-8",
+		    success:function(data){   
+			 alert(JSON.stringify(data));
+                         localStorage.setItem(pkey, JSON.stringify(data));
+		    }  
+	      }); 
+      }
+}
+
+Behavior2.Class('pic-show', 'div#content .images',{
+          click: {
+
+          }
+       }, function($ctx, that) {
+          
+          var $ele;    
+	  $ele = $ctx.find("img");
+
+          var pkey = window.location.href;   
+          var pdata = {};
+          pdata = JSON.parse(localStorage.getItem(pkey));
+
+          var wrapData = function(str){
+                   //res = '<img alt="Placeholder" src="'+ str + '">';
+                   res = '<img alt="placeholder" src="https://lh3.googleusercontent.com/-n_uAAv3yQjc/Va7tJCiHJDI/AAAAAAAAAJs/8yIvExy2UD8/3-54d430b6Nce70cd8e.jpg" >';
+
+                   return res;
+          };
+
+          var map = {
+                 "img:first": JSON.stringify(pdata.img1)
+              }; 
+          var wrap = {
+                  "img:first": wrapData
+                  //"div #tab-reviews":[{"div #tab-reviews": wrapData},{"div #tab-reviews": wrapData2}]
+              };
+
+          var init = function(){
+              
+              for (var key in wrap){
+                    //alert(typeof(wrap[key]));
+                    if(typeof(wrap[key]== "function")){
+                        map[key] = wrap[key](map[key]);
+                    }
+                } 
+
+                  for(var key in map){
+                       var $p = $ctx.find(key);
+                       //$p.html(map[key]);
+                       //$p.prop("outHTML", map[key]);
+                       $p.after(map[key]);
+                       $p.remove();
+                  }
+                 
+                  // $ctx.find("img").remove();
+          };     
+
+          init();
+
+      });
+
+Behavior2.Class('desc', 'div#multitabs-detail', {
+	  click: {
+            '.tab-content': 'hide'
+	  }
+	}, function($ctx, that) {
+	  console.log('hello this is that');
+          //alert("now in Behavior function");
+ 
+         // --------------
+              var pkey = window.location.href;   //path + srh ; 
+              var pdata = {};
+              pdata = JSON.parse(localStorage.getItem(pkey));
+
+              var curKey = ""; 
+
+var map = {
+    "div #tab-description": {"search": pdata.search} ,
+    "div #tab-wd_custom": {"wd-args": pdata.args, "wd-search": pdata.search }
+};
+
+var wrapData = function(dataJson){
+     alert("this is wrapData with dataJson" + JSON.stringify(dataJson));
+     return dataJson;
+}
+var wrapData2 = function(dataText){
+
+    alert("this is wrapData2 with dataText" + dataText);
+    return dataText;
+}
+var wrapData3 = function(dataDom){
+    alert("this is wrapData3 with dataDom");
+    return dataDom;
+}
+
+var wrap = {
+    "div #tab-description": [{ "function": wrapData, "dataType": "json", "priority": 10 }],
+    "div #tab-wd_custom": [
+                  { "function": wrapData,  "dataType":"json", "priority": 10},
+                  { "function": wrapData2, "dataType":"text", "priority": 99},
+                  { "function": wrapData3, "dataType":"dom",  "priority": 99}
+                ]
+};
+
+var defLoader = function(arg){} ;
+var defRender = function(arg){ alert("now in defrender");  return JSON.stringify(arg); } ;
+var defEcho   = function(arg){ alert("now in defecho");  var $p = $ctx.find(curKey); $p.html("hhhh"+arg); }
+var defEvent  = function(arg){} ;
+
+var proc = {
+    "div #tab-description": { "loader": defLoader, "render": defRender, "echo": defEcho, "event": defEvent},
+    "div #tab-wd_custom": { "loader": defLoader, "render": defRender, "echo": defEcho, "event": defEvent}
+};
+    
+function process(key)
+{
+    curKey = key ;
+    var render = proc[key]["render"] ;
+    var echo = proc[key]["echo"];
+    
+    var funs = wrap[key];
+    
+    if(funs instanceof Array){
+            for(var i=0; i<funs.length; i++)
+                if(funs[i]["dataType"] == "json")
+                     map[key] = funs[i]["function"](map[key]);
+    }
+    
+    map[key] = render(map[key]) ;
+    
+    if(funs instanceof Array){
+            for(var i=0; i<funs.length; i++)
+                if(funs[i]["dataType"] == "text")
+                     map[key] = funs[i]["function"](map[key]);
+    }
+    
+    map[key] = echo(map[key]);
+    
+    if(funs instanceof Array){
+            for(var i=0; i<funs.length; i++)
+                if(funs[i]["dataType"] == "dom")
+                     map[key] = funs[i]["function"](map[key]);
+    }
+
+}
+
+process("div #tab-description");
+
+         // -----------------
+
+	  var $ele;    
+	  $ele = $ctx.find("h2");
+	  that.hide = function(e) {
+           // alert("now in hide");
+	    e.preventDefault();
+	    $target = $(e.currentTarget);
+	    $ele.remove();
+	    $target.hide();
+	    //alert("remove");
+	    return Behavior2.contentChanged();
+	    };
+	});
+

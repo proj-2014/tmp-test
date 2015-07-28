@@ -49,7 +49,7 @@ if($_SERVER["HTTP_HOST"]=="test01.tmp0230.ml"|| $_SERVER["HTTP_HOST"]=="test01.v
 else if($_SERVER["HTTP_HOST"]=="test02.tmp0230.ml" || $_SERVER["HTTP_HOST"]=="test02.vlan" )
 {
 
-     define('PATCHPATH', EXTRAPATH . 'patch4mall/');
+     define('PATCHPATH', EXTRAPATH . 'patch4the7/');
      require_once(COMMONPATH . 'init.php');
      require_once(PATCHPATH . 'patch.php');
    
